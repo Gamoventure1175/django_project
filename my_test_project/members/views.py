@@ -1,10 +1,10 @@
 from django.http import HttpResponse, HttpRequest
 from django.template import loader
-from .models import Members
+from .models import Member
 
 def members(request: HttpRequest):
     template = loader.get_template('all_members.html')
-    my_members = Members.objects.all()
+    my_members = Member.objects.all()
     context = {
         'members': my_members,
     }
@@ -12,7 +12,7 @@ def members(request: HttpRequest):
 
 def details(request: HttpRequest, member_id: int):
     template = loader.get_template('details.html')
-    member = Members.objects.get(id=member_id)
+    member = Member.objects.get(id=member_id)
     context = {
         'member': member,
     }
